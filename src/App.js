@@ -9,7 +9,7 @@ function App() {
   const [friendList, setFriendList] = useState([]);
 
   const btnAdd = (req, res) =>{
-    Axios.post('http://localhost:3001/add',{
+    Axios.post('https://friendslis.herokuapp.com/add',{
       name:name,
       age:age
     }).then((response) =>{
@@ -21,7 +21,7 @@ function App() {
   const friendUpdate = (id) =>{
     const newAge = prompt("Enter the new Age");
 
-    Axios.put('http://localhost:3001/update', {newAge: newAge, id: id})
+    Axios.put('https://friendslis.herokuapp.com/update', {newAge: newAge, id: id})
     .then(() =>{
       setFriendList(
         friendList.map((val) => {
@@ -32,7 +32,7 @@ function App() {
   };
 
   const friendDelete = (id) =>{
-    Axios.delete(`http://localhost:3001/delete/${id}`)
+    Axios.delete(`https://friendslis.herokuapp.com/delete/${id}`)
     .then(()=>{
       setFriendList(
         friendList.filter((val) => {
@@ -43,7 +43,7 @@ function App() {
   }
 
 useEffect(() => {
-  Axios.get('http://localhost:3001/read')
+  Axios.get('https://friendslis.herokuapp.com/read')
     .then((response) =>{
       setFriendList(response.data);
     }).catch(() =>{
